@@ -4,7 +4,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let userData = await fetch('https://api.github.com/users/' + process.env.GH_USERNAME + "/repos")
+  const { user } = req.query;
+  let userData = await fetch('https://api.github.com/users/' + user + "/repos")
     .then(response => {
       if (!response.ok) {
         res.status(500);

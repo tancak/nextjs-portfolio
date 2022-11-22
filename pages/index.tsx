@@ -8,7 +8,7 @@ type Profile = {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(process.env.SITE_URL + '/api/user');
+  const res = await fetch(process.env.SITE_URL + '/api/user/' + process.env.GH_USERNAME);
   const profile = await res.json();
   return { props: profile };
 }
