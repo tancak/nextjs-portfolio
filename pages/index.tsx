@@ -1,4 +1,5 @@
 import { Bio } from "../components/bio"
+import { Gallery } from "../components/gallery";
 
 type Profile = {
   name: string;
@@ -14,7 +15,10 @@ export async function getServerSideProps() {
 
 function Home(profile: Profile) {
   return (
-    <Bio name={ profile.name } avatarURL={ profile.avatar_url } bio={ profile.bio }/>
+    <div className="flex flex-col m-10">
+      <Bio name={ profile.name } avatar_url={ profile.avatar_url } bio={ profile.bio }/>
+      <Gallery/>
+    </div>
   );
 }
 
