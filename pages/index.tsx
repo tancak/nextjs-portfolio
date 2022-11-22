@@ -6,8 +6,8 @@ type Profile = {
   bio: string;
 }
 
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/user');
+export async function getServerSideProps(context) {
+  const res = await fetch(process.env.SITE_URL + '/api/user');
   const profile = await res.json();
   return { props: profile };
 }
