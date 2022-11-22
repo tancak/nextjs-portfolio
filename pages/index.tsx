@@ -1,7 +1,21 @@
 import { Bio } from "../components/bio"
 
-export default function Home() {
-  return (
-    <Bio name="Marek Tancak" avatarURL="https://avatars.githubusercontent.com/u/11760749?v=4" bio="I'm a software developer passionate about everything from deep learning to software development"/>
-  )
+type Profile = {
+  name: string;
+  avatar_url: string;
+  bio: string;
 }
+
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:3000/api/user');
+  const profile = await res.json();
+  return { props: profile };
+}
+
+function Home(profile: Profile) {
+  return (
+    <Bio name={ profile.name } avatarURL={ profile.avatar_url } bio={ profile.bio }/>
+  );
+}
+
+export default Home;
